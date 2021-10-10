@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'userApp',
     'MrExpressShop',
 ]
+AUTH_USER_MODEL = 'userApp.User'
+#app name and custom model name
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

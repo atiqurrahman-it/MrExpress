@@ -40,6 +40,6 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'first_name','last_name', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'username','first_name','last_name', 'is_active', 'is_admin')
 
 

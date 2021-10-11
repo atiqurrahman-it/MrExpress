@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userApp',
     'MrExpressShop',
+    'product_category',
+    'product_store'
 ]
 AUTH_USER_MODEL = 'userApp.User'
 #app name and custom model name

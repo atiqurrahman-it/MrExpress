@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'userApp',
     'MrExpressShop',
     'product_category',
-    'product_store'
+    'product_store',
+    'accounts'
 ]
 AUTH_USER_MODEL = 'userApp.User'
 #app name and custom model name

@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from .models import User
 
 
+
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
@@ -41,5 +42,8 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'password', 'username','first_name','last_name', 'is_active', 'is_admin')
+
+
+
 
 

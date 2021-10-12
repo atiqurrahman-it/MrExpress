@@ -1,7 +1,6 @@
-
 {% extends 'base.html' %}
 
-{% block title %} {% endblock %}
+{% block title %} Home page  {% endblock %}
 
 {% block stylesheetLink %} {% endblock %}
 {% block stylesheet %}  # style {% endblock %}
@@ -15,7 +14,10 @@
 {% include 'inheritancePage/sidebar_slider.html' %}
 {% endblock %}
 
-{% block main_content %} {% endblock %}
+
+{% block main_content %}
+{% include 'pages/main_content.html' %}
+{% endblock %}
 
 {% block footer %}
 {% include 'inheritancePage/footer.html' %}

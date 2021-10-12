@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %} Register Page{% endblock %}
+
+{% block stylesheetLink %} {% endblock %}
+{% block stylesheet %}  # style {% endblock %}
+
+
+{% block header %}
+{% include 'inheritancePage/header.html' %}
+{% endblock %}
+
+{% block slider&Sidebar %}
+{% endblock %}
+
+{% block main_content %}
+ <!-- Begin Li's Breadcrumb Area -->
+            <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active"> Register</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Li's Breadcrumb Area End Here -->
+            <!-- Begin Login Content Area -->
+            <div class="page-section mb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+                            <form action="{% url 'accounts:register' %}" method="post">
+                                {% csrf_token %}
+                                <div class="login-form">
+                                    <h4 class="login-title">Register</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>First Name</label>
+                                            {{form.first_name}}
+                                        </div>
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>Last Name</label>
+                                            {{form.last_name}}
+                                        </div>
+                                        <div class="col-md-12 mb-20">
+                                            <label>Email Address*</label>
+                                            {{form.email}}
+                                        </div>
+                                        <div class="col-md-6 mb-20">
+                                            <label>Password</label>
+                                            {{form.password}}
+                                        </div>
+                                        <div class="col-md-6 mb-20">
+                                            <label>Confirm Password</label>
+                                            {{form.password2}}
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="register-button mt-0">Register</button>
+                                        </div>
+                                           <center>
+                                         <div class="col-12">
+                                           <p>Have an account? <a href="{% url 'accounts:login' %}">Log in</a></p>
+                                       </div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </form>
+
+<!--                    <form action="{% url 'accounts:register' %}" method="post">-->
+<!--                {% csrf_token %}-->
+<!--                {{ form }}-->
+<!--                <button type="submit" style="width: 100%;" class="btn btn-primary">Sing Up</button>-->
+<!--            </form>-->
+
+                        </div>
+                         <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
+                            <!-- Login Form s-->
+                                <div class="login-form">
+                                    <h4 class="login-title">Login</h4>
+                                    <div class="row">
+                                        <div class="col-md-12 col-12 mb-20">
+                                            <label>Continue with Google</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+
+{% block footer %}
+{% include 'inheritancePage/footer.html' %}
+{% endblock %}
+
+
+{% block scriptLink %} {% endblock %}
+{% block script %} {% endblock %}
+

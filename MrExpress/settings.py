@@ -137,6 +137,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # upload file store location
 LOGIN_URL = '/userPage/login/' # when using  login_required then this location path work
 # login_required login path
 
+
+#Register with Email verification
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'django.project.cse@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = 'django1234@'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

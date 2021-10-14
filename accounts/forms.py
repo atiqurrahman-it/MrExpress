@@ -2,6 +2,8 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from userApp.models import User
+
+
 # class RegisterCreateUserForm(UserCreationForm) Or :
 
 # if {{forms.email}}
@@ -10,19 +12,22 @@ class RegisterCreateUserForm(forms.ModelForm):
                              widget=forms.TextInput(attrs={'placeholder': 'Email ', 'type': 'email', }))
 
     password = forms.CharField(required=True,
+                               label='',
+                               widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    password2 = forms.CharField(required=True,
                                 label='',
-                                widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-    password2  = forms.CharField(required=True,
-                                label='',
-                                widget=forms.PasswordInput(attrs={'placeholder': 'Password confirmation'}))
-
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password '}))
 
     class Meta:
         model = User
-        fields = ('first_name','last_name','email', 'password')
+        fields = ('first_name', 'last_name', 'email', 'password','password2')
 
-
-
+        widgets = {
+                    'first_name': forms.TextInput(attrs={'placeholder': 'First Name ',
+                                                            'class': 'form-control'}),
+                    'last_name': forms.TextInput(attrs={'placeholder': 'Last Name ',
+                                                            'class': 'form-control'}),
+                }
 
 # second way
 # if {{forms}}
@@ -40,7 +45,6 @@ class RegisterCreateUserForm(forms.ModelForm):
 #             'password2': forms.PasswordInput(attrs={'placeholder': 'Enter Repeat password',
 #                                                     'class': 'form-control'}),
 #         }
-
 
 
 # if {{forms}}
@@ -61,4 +65,3 @@ class RegisterCreateUserForm(forms.ModelForm):
 #         model = User
 #         fields = ('first_name','last_name','email', 'password1','password2')
 #
-

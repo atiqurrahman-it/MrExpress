@@ -117,6 +117,17 @@
         {% block scriptLink %}
         {% endblock %}
 
+<!--      auto error show message remove er jonno-->
+    <script>
+    setTimeout(function(){
+        if( $('#message').length >0) {
+            $('#message').remove();
+        }
+    }, 3000);
+
+
+    </script>
+
         {% block script %}
         {% endblock %}
      </body>

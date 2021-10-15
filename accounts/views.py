@@ -1,9 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.tokens import default_token_generator
 from django.http import Http404
-from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse, redirect
+from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse, redirect, get_object_or_404
 from accounts.forms import RegisterCreateUserForm
 from userApp.models import User
+from accounts.models import User_Profile
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -49,6 +50,13 @@ def Register(request):
                     # user.save(commit=False)
                     user.is_active = False
                     user.save()
+                    # Auto add Register data to user_profile
+                    current_user = User.objects.get(username=username)
+                    data = User_Profile()
+                    data.user_id = current_user.id
+                    data.image = "userDefault_profile_img/avatar.jpg"
+                    data.save()
+                    # Auto add Register data to user_profile End
                     current_site = get_current_site(request)
                     email_subject = 'Activate Your Account'
                     message = render_to_string('Account_page/confrim_emai.html', {
@@ -88,11 +96,17 @@ def Register(request):
 def activate(request, uid, token):
     try:
         user = User.objects.get(pk=uid)
+
     except:
         raise Http404("No user found ")
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
+        # auto User_Profile verify is True when Email verify link is click
+        pro = get_object_or_404(User_Profile, user_id=user.id)
+        pro.verify = True
+        pro.save()
+
         return HttpResponseRedirect(reverse('MrExpressShop:homepage'))
     else:
         return HttpResponse('Activation link is invalid!')
@@ -103,12 +117,33 @@ def Login(request):
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate(email=email, password=password)
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect(reverse('MrExpressShop:homepage'))
-        else:
-            # error show
-            return HttpResponseRedirect(reverse('accounts:login'))
+        #  before verify Email link click  Start
+        try:
+            current_user = User.objects.get(email=email)
+            pro = User_Profile.objects.get(user=current_user)
+
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('MrExpressShop:homepage'))
+            elif pro.verify is False:
+                messages.warning(request,
+                                 'Your Account is  not verified, please check your Email And verify your Accounts ')
+                return HttpResponseRedirect(reverse('accounts:login'))
+
+            else:
+                # error show
+                messages.warning(request, 'email or password is incorrect l')
+                return HttpResponseRedirect(reverse('accounts:login'))
+        except:
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('MrExpressShop:homepage'))
+
+            else:
+                # error show
+                messages.warning(request, 'email or password is incorrect l')
+                return HttpResponseRedirect(reverse('accounts:login'))
+        #  before verify Email link click  End
 
     return render(request, 'Account_page/login.html')
 

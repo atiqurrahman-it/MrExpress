@@ -54,7 +54,9 @@ def Register(request):
                     current_user = User.objects.get(username=username)
                     data = User_Profile()
                     data.user_id = current_user.id
+                    f_name = first_name + " " + last_name
                     data.image = "userDefault_profile_img/avatar.jpg"
+                    data.full_name = f_name
                     data.save()
                     # Auto add Register data to user_profile End
                     current_site = get_current_site(request)
@@ -71,15 +73,6 @@ def Register(request):
                     return HttpResponse(
                         'We have sent you an email, please confirm your email address to complete registration')
 
-                    # username = username
-                    # password_raw = password
-                    # user = authenticate(username=username, password=password_raw)
-                    # login(request, user)
-                    # current_user = request.user
-                    # data = User_Profile()
-                    # data.user_id = current_user.id
-                    # data.image = "user_img/avatar.jpg"
-                    # data.save()
             else:
                 messages.info(request, 'password not matching ')
                 return HttpResponseRedirect(reverse('accounts:register'))

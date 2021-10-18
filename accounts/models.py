@@ -19,7 +19,7 @@ class User_Profile(models.Model):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def image_tag(self):
-        return mark_safe('<img src="%s" width="100px" height="100px" />' % self.image.url)
+        return mark_safe('<img src="%s" width="80px" height="80px" />' % self.image.url)
 
     image_tag.short_description = 'Image'
 

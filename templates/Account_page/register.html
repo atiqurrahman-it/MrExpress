@@ -1,9 +1,32 @@
 {% extends 'base.html' %}
+<!-- social login start-->
+
+<!-- social login End-->
 
 {% block title %} Register Page{% endblock %}
 
 {% block stylesheetLink %} {% endblock %}
-{% block stylesheet %}  # style {% endblock %}
+{% block stylesheet %}
+<style>
+.form-signin .btn {
+    font-size: 80%;
+    border-radius: 0rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s
+}
+.btn-google {
+    color: white;
+    background-color: #ea4335
+}
+
+.btn-facebook {
+    color: white;
+    background-color: #3b5998
+}
+</style>
+{% endblock %}
 
 
 {% block header %}
@@ -103,7 +126,10 @@
                                     <h4 class="login-title">Login</h4>
                                     <div class="row">
                                         <div class="col-md-12 col-12 mb-20">
-                                            <label>Continue with Google</label>
+                                             <div  class="form-signin">
+                                            <button href="#" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fa fa-google mr-2"></i> Sign in with Google</button>
+                                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><a href="" class="facebook-bg"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></button>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>

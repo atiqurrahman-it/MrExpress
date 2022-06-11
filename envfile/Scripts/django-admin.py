@@ -1,4 +1,4 @@
-#!C:\Users\atiqu\Desktop\EcommerceProjectUsingDjangoAjaxJqury\envfile\Scripts\python.exe
+#!C:\Users\atiqu\Desktop\MrExpress\envfile\Scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
